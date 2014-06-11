@@ -1,0 +1,28 @@
+*** Settings ***
+Suite Setup    Go to homepage
+Suite Teardown    Close All Browsers
+Resource    ./common/assets/secrets.txt
+Resource    ./common/assets/resource.txt
+Resource    local_resource.txt
+
+*** Variables ***
+
+*** Test Cases ***
+Git LOGIN FAIL
+    login    ${VALID_USER}      test   Invalid
+Git LOGIN OK
+    login    ${VALID_USER}      ${VALID_PASSWORD}    Dashboard
+
+*** Keywords ***
+login
+    [Arguments]    ${username}   ${password}  ${results}
+    Input Text    id=username    ${username}
+    Set Log Level    NONE
+    Input Text    id=password    ${password}
+    Set Log Level    DEBUG
+    Click Button  name=commit
+    Wait Until Page Contains    ${results}
+
+Go to homepage
+    Open Browser    ${GIT_URL}    ${BROWSER}
+
