@@ -1,0 +1,55 @@
+*** Settings ***
+Suite Setup    Go to homepage
+Suite Teardown    Close All Browsers
+Resource    ./common/assets/secrets.txt
+Resource    ./common/assets/resource.txt
+Resource    local_resource.txt
+Library    GitClient
+
+*** Variables ***
+${reponame}    ta_repo_willberemovedbyrobot
+
+
+*** Test Cases ***
+Git LOGIN OK
+    login    ${VALID_USER}      ${VALID_PASSWORD}    Dashboard
+Git Create Repo
+    create repo
+Git Init Repo
+    init local repo
+Verify Commit
+    Click Element    css=i.icon-home
+    Wait Until Page Contains    pushed new branch
+Remove Repository
+    Click Element    link=Settings
+    Wait Until Page Contains    settings
+    Click Element    css=i.icon-chevron-down
+    Wait Until Page Contains    Remove project
+    Click Element    link=Remove project
+    Confirm Action
+Remove local folder
+    remove local repo
+*** Keywords ***
+create repo
+    Click Element    css=i.icon-plus
+    Wait Until Page Contains    New Project
+    Input Text    id=project_name    ${reponame} 
+    Click Button    name=commit
+    Wait Until Page Contains    ${VALID_USER}/${reponame}.git
+remove local repo
+    removerepo    ${reponame}
+init local repo
+    initrepo    ${reponame}    ${VALID_USER}    ${VALID_PASSWORD}
+
+login
+    [Arguments]    ${username}   ${password}  ${results}
+    Input Text    id=username    ${username}
+    Set Log Level    NONE
+    Input Text    id=password    ${password}
+    Set Log Level    DEBUG
+    Click Button  name=commit
+    Wait Until Page Contains    ${results}
+
+Go to homepage
+    Open Browser    ${GIT_URL}    ${BROWSER}
+
