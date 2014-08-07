@@ -4,7 +4,7 @@ Suite Teardown    Close All Browsers
 Resource    ./common/assets/secrets.txt
 Resource    ./common/assets/resource.txt
 Resource    local_resource.txt
-
+ 
 *** Variables ***
 
 *** Test Cases ***
