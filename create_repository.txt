@@ -18,6 +18,7 @@ Git Create Repo
 Git Init Repo
     init local repo
 Verify Commit
+#    Click Element    css=i.icon-home
     Click Link    Activity
     Wait Until Page Contains    pushed new branch
 Remove Repository
@@ -29,6 +30,7 @@ Remove Repository
     Confirm Action
 Remove local folder
     remove local repo
+
 *** Keywords ***
 create repo
     Click Element    css=i.icon-plus
@@ -39,7 +41,7 @@ create repo
 remove local repo
     removerepo    ${reponame}
 init local repo
-    initrepo    ${reponame}    ${VALID_USER}    ${VALID_PASSWORD}
+    initrepo    ${reponame}    ${VALID_USER}    ${VALID_PASSWORD}    ${GIT_URL_NO_PROTOCOL}
 
 login
     [Arguments]    ${username}   ${password}  ${results}
