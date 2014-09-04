@@ -1,0 +1,20 @@
+*** Settings ***
+Suite Setup    Go to homepage
+Suite Teardown    Close All Browsers
+Resource    ./common/assets/secrets.txt
+Resource    ./common/assets/resource.txt
+Resource    local_resource.txt
+ 
+*** Variables ***
+
+*** Test Cases ***
+Check public projects
+    Click Link    Explore
+    Wait Until Page Contains    Explore
+    Page Should Contain    Discover projects and groups.
+    Click Link    Show all projects
+    Wait Until Page Contains    Ansible
+
+*** Keywords ***
+Go to homepage
+    Open Browser    ${GIT_URL}    ${BROWSER}
