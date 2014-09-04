@@ -8,10 +8,10 @@ Resource    local_resource.txt
 *** Variables ***
 
 *** Test Cases ***
-Git LOGIN FAIL
-    login    ${VALID_USER}      test   Invalid
-Git LOGIN OK
+Git LOGIN OK digile
     login    ${VALID_USER}      ${VALID_PASSWORD}    Dashboard
+Git LOGIN OK service developer
+    login    ${VALID_SERVICE_DEVELOPER}      ${VALID_SERVICE_DEVELOPER_PASSWORD}    Dashboard
 
 *** Keywords ***
 login
@@ -22,6 +22,7 @@ login
     Set Log Level    DEBUG
     Click Button  name=commit
     Wait Until Page Contains    ${results}
+    Click Element    css=i.icon-signout
 
 Go to homepage
     Open Browser    ${GIT_URL}    ${BROWSER}
