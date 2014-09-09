@@ -11,10 +11,10 @@ Resource    local_resource.txt
 Check public projects
     Click Link    Explore
     Wait Until Page Contains    Explore
-    Page Should Contain    Discover projects and groups.
+    Wait Until Page Contains    Discover projects and groups.
     Click Link    Show all projects
     Wait Until Page Contains    Ansible
 
 *** Keywords ***
 Go to homepage
-    Open Browser    ${GIT_URL}    ${BROWSER}
+    Open Browser    ${GIT_URL}    ${BROWSER}     remote_url=http://ci.forgeservicelab.fi:4444/wd/hub
