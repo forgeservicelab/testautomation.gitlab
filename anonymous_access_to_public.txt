@@ -15,6 +15,3 @@ Check public projects
     Click Link    Show all projects
     Wait Until Page Contains    Ansible
 
-*** Keywords ***
-Go to homepage
-    Open Browser    ${GIT_URL}    ${BROWSER}     remote_url=http://ci.forgeservicelab.fi:4444/wd/hub

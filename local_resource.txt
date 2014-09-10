@@ -1,2 +1,7 @@
+***Variables***
 
-*** Variables ***
+***Keywords***
+Go to homepage
+#    Open Browser    ${GIT_URL}    ${BROWSER}     remote_url=http://ci.forgeservicelab.fi:4444/wd/hub
+    Open Browser    ${GIT_URL}    ${BROWSER}
+

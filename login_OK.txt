@@ -24,6 +24,3 @@ login
     Wait Until Page Contains    ${results}
     Click Element    css=i.icon-signout
 
-Go to homepage
-    Open Browser    ${GIT_URL}    ${BROWSER}     remote_url=http://ci.forgeservicelab.fi:4444/wd/hub
-
