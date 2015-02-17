@@ -18,24 +18,28 @@ Git Create Repo
 Git Init Repo
     init local repo
 Verify Commit
-#    Click Element    css=i.icon-home
-    Click Link    Activity
+    Go To     ${GIT_URL}/${VALID_USER}/${reponame}
     Wait Until Page Contains    pushed new branch
 Remove Repository
-    Click Element    link=Settings
+    Go To     ${GIT_URL}/${VALID_USER}/${reponame}/edit
     Wait Until Page Contains    settings
-    Click Element    css=i.icon-chevron-down
-    Wait Until Page Contains    Remove project
+    Wait Until Page Contains    Removed projects cannot be restored!
     Click Element    link=Remove project
-    Confirm Action
+    Input Text     id=confirm_name_input    ${reponame} 
+#    Sleep    3 s
+#    Click Button    name=commit
+    Click Element    css=div.form-group > input[name="commit"]
+    Page Should Contain    Project deleted
 Remove local folder
     remove local repo
 
 *** Keywords ***
 create repo
-    Click Element    css=i.icon-plus
+#    Click Element    css=i.icon-plus
+    Click Element    css=i.fa.fa-plus
     Wait Until Page Contains    New Project
-    Input Text    id=project_name    ${reponame} 
+#    Input Text    id=project_name    ${reponame} 
+    Input Text    id=project_path    ${reponame} 
     Click Button    name=commit
     Wait Until Page Contains    ${VALID_USER}/${reponame}.git
 remove local repo
@@ -49,6 +53,6 @@ login
     Set Log Level    NONE
     Input Text    id=password    ${password}
     Set Log Level    DEBUG
-    Click Button  name=commit
+    Click Button  name=button
     Wait Until Page Contains    ${results}
 

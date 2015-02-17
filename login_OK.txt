@@ -20,7 +20,8 @@ login
     Set Log Level    NONE
     Input Text    id=password    ${password}
     Set Log Level    DEBUG
-    Click Button  name=commit
+    Click Button  name=button
     Wait Until Page Contains    ${results}
-    Click Element    css=i.icon-signout
+#    Click Element    css=i.icon-signout
+    Click Element    css=i.fa.fa-sign-out
 

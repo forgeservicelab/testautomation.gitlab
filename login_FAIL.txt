@@ -11,9 +11,9 @@ Resource    local_resource.txt
 Git LOGIN FAIL
     login    ${VALID_USER}      test   Invalid
 Git LOGIN OK partner cra FAIL
-    login    ${VALID_PARTNERCRA}      ${VALID_PARTNERCRA_PASSWORD}    you are not a forge developer
+    login    ${VALID_PARTNERCRA}      ${VALID_PARTNERCRA_PASSWORD}    Access denied for your LDAP account.
 Git LOGIN OK partner FAIL 
-    login    ${VALID_PARTNER}      ${VALID_PARTNER_PASSWORD}    you are not a forge developer
+    login    ${VALID_PARTNER}      ${VALID_PARTNER_PASSWORD}    Access denied for your LDAP account.
 
 *** Keywords ***
 login
@@ -22,6 +22,7 @@ login
     Set Log Level    NONE
     Input Text    id=password    ${password}
     Set Log Level    DEBUG
-    Click Button  name=commit
+    Click Button  name=button
     Wait Until Page Contains    ${results}
+
 
