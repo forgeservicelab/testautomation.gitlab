@@ -1,6 +1,6 @@
 *** Settings ***
 Suite Setup    Go to homepage
-Suite Teardown    Close All Browsers
+#Suite Teardown    Close All Browsers
 Resource    ./common/assets/secrets.txt
 Resource    ./common/assets/resource.txt
 Resource    local_resource.txt
@@ -12,16 +12,16 @@ ${reponame}    ta_repo_willberemovedbyrobot
 
 *** Test Cases ***
 Git LOGIN OK
-    login    ${VALID_USER}      ${VALID_PASSWORD}    Dashboard
+    login    ${VALID_SERVICE_DEVELOPER}      ${VALID_SERVICE_DEVELOPER_PASSWORD}    Dashboard
 Git Create Repo
     create repo
 Git Init Repo
     init local repo
 Verify Commit
-    Go To     ${GIT_URL}/${VALID_USER}/${reponame}
+    Go To     ${GIT_URL}/${VALID_SERVICE_DEVELOPER}/${reponame}
     Wait Until Page Contains    pushed new branch
 Remove Repository
-    Go To     ${GIT_URL}/${VALID_USER}/${reponame}/edit
+    Go To     ${GIT_URL}/${VALID_SERVICE_DEVELOPER}/${reponame}/edit
     Wait Until Page Contains    settings
     Wait Until Page Contains    Removed projects cannot be restored!
     Click Element    link=Remove project
@@ -39,13 +39,14 @@ create repo
     Click Element    css=i.fa.fa-plus
     Wait Until Page Contains    New Project
 #    Input Text    id=project_name    ${reponame} 
+    Sleep    1 s
     Input Text    id=project_path    ${reponame} 
     Click Button    name=commit
-    Wait Until Page Contains    ${VALID_USER}/${reponame}.git
+    Wait Until Page Contains    ${VALID_SERVICE_DEVELOPER}/${reponame}.git
 remove local repo
     removerepo    ${reponame}
 init local repo
-    initrepo    ${reponame}    ${VALID_USER}    ${VALID_PASSWORD}    ${GIT_URL_NO_PROTOCOL}
+    initrepo    ${reponame}    ${VALID_SERVICE_DEVELOPER}    ${VALID_SERVICE_DEVELOPER_PASSWORD}    ${GIT_URL_NO_PROTOCOL}
 
 login
     [Arguments]    ${username}   ${password}  ${results}
