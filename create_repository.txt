@@ -1,6 +1,6 @@
 *** Settings ***
 Suite Setup    Go to homepage
-#Suite Teardown    Close All Browsers
+Suite Teardown    Close All Browsers
 Resource    ./common/assets/secrets.txt
 Resource    ./common/assets/resource.txt
 Resource    local_resource.txt
