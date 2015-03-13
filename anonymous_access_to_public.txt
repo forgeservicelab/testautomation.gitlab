@@ -13,5 +13,22 @@ Check public projects
     Wait Until Page Contains    Explore
     Wait Until Page Contains    Discover projects and groups.
     Click Link    Show all projects
-    Wait Until Page Contains    Ansible
+    Wait Until Page Contains    All Projects
+Search Repo
+    Go to    ${GIT_URL}/explore/projects
+    Input Text    id=projects_search     test
+    Click Element    name=button
+    Wait Until Page Contains    testgroup
+    Page Should Contain    testgroup
+Open Test Repo
+    Click Link    testgroup / test repo
+    Wait Until Page Contains    Owned by
+    Page Should Contain    Owned by
+Open File
+    Click Element    css=i.fa.fa-files-o
+#    Go to    ${GIT_URL}/testgroup/test-repo/tree/master
+    Click Link    README.md
+    Page Should Not Contain    We're sorry, but something went wrong.
+    Page Should Contain    Still some things to do
+
 
